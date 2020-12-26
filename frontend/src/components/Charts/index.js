@@ -3,31 +3,15 @@ import Graph from "./Graph";
 import Stats from "./Stats";
 import Table from "./Table";
 import DataTable from "./DataTable";
+import ProductsTable from "./ProductsTable";
 import { Header } from "../../layouts";
 import { withStyles } from "@material-ui/styles";
 import { Container, Paper, Button } from "@material-ui/core";
 import models from "../../store";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import ShlGrid from "../ShlGrid";
 
 const drawerWidth = 240;
-const query = `
-  {
-    logs {
-      id
-      team_id
-      name
-      url
-      position
-      stat {
-      GP, W, L, T, OTW, OTL, PTS, GF, GA, GD
-      } 
-      timestamp
-    }
-  }
-`;
 
 const data = {
   days: {
@@ -277,52 +261,22 @@ class Charts extends React.Component {
 
           <div className="row">
             <div className="col-lg-12 col-md-12">
-              <div className="card">
-                <div
-                  className={"card-header card-header-info"}
-                  style={{
-                    background:
-                      "linearGradient(60deg, black, #063950) !important",
-                  }}
-                >
-                  <h4 className="card-title">
-                    <img src="/images/ep-logo.svg" height="50" />
-                    <div
-                      style={{
-                        float: "right",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <CountdownCircleTimer
-                        key={1}
-                        size="45"
-                        strokeWidth="5"
-                        isPlaying
-                        duration={20}
-                        colors={[
-                          ["#004777", 0.33],
-                          ["#F7B801", 0.33],
-                          ["#A30000"],
-                        ]}
-                        onComplete={() => {
-                          this.props.createAction({ query });
-                          this.forceUpdate();
-                          return [true, 1000];
-                        }}
-                      >
-                        {renderTime}
-                      </CountdownCircleTimer>
-                    </div>
-                  </h4>
-                </div>
-                <div className="card-body table-responsive">
-                  <ShlGrid shl={this.state.logs} />
-                </div>
-              </div>
+              <ProductsTable
+                products={[]}
+                createAction={this.props.createAction}
+              />
             </div>
           </div>
+
+          <div className="row">
+            <div className="col-lg-12 col-md-12">
+              <DataTable
+                logs={this.state.logs}
+                createAction={this.props.createAction}
+              />
+            </div>
+          </div>
+
           <div className="row">
             <Table
               id="multilineChart"
@@ -352,22 +306,6 @@ Charts.defaultProps = {
   },
 };
 
-const renderTime = ({ remainingTime }) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div style={{ fontSize: "12px", textAlign: "center" }}>
-        {remainingTime}
-      </div>
-    </div>
-  );
-};
 /**
  * Get data from store
  * @param state

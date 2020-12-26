@@ -1,22 +1,7 @@
 import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import ShlGrid from "../ShlGrid";
+import Products from "../Products";
 
-const query = `
-  {
-    logs {
-      id
-      team_id
-      name
-      url
-      position
-      stat {
-      GP, W, L, T, OTW, OTL, PTS, GF, GA, GD
-      } 
-      timestamp
-    }
-  }
-`;
 const renderTime = ({ remainingTime }) => {
   return (
     <div
@@ -34,7 +19,7 @@ const renderTime = ({ remainingTime }) => {
   );
 };
 
-export default function SportsTable({ logs, createAction }) {
+export default function ProductsTable({ products, createAction }) {
   return (
     <div className="card">
       <div
@@ -71,7 +56,7 @@ export default function SportsTable({ logs, createAction }) {
         </h4>
       </div>
       <div className="card-body table-responsive">
-        <ShlGrid shl={logs} />
+        <Products products={products} />
       </div>
     </div>
   );
