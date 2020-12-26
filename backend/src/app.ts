@@ -59,7 +59,8 @@ app.use(morgan("common"));
 // EJS Layouts
 // ----------------------------------
 app.use(expressLayouts);
-app.set("views", path.join(__dirname, "views"));
+// app.set("views", path.join(__dirname, "views"));
+app.set("views", path.resolve(__dirname, "../../", "frontend", "dist"));
 app.set("view engine", "ejs");
 
 // ----------------------------------
