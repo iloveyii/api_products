@@ -1,6 +1,9 @@
 import React from "react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { makeStyles } from "@material-ui/core/styles";
+
 import ShlGrid from "../ShlGrid";
+import Timer from "../Timer";
+import { styles } from "./styles";
 
 const query = `
   {
@@ -17,24 +20,12 @@ const query = `
     }
   }
 `;
-const renderTime = ({ remainingTime }) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div style={{ fontSize: "12px", textAlign: "center" }}>
-        {remainingTime}
-      </div>
-    </div>
-  );
-};
+
+const useStyles = makeStyles((theme) => styles(theme));
 
 export default function SportsTable({ logs, createAction }) {
+  const classes = useStyles();
+
   return (
     <div className="card">
       <div
@@ -45,28 +36,8 @@ export default function SportsTable({ logs, createAction }) {
       >
         <h4 className="card-title">
           <img src="/images/ep-logo.svg" height="50" />
-          <div
-            style={{
-              float: "right",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <CountdownCircleTimer
-              key={1}
-              size="45"
-              strokeWidth="5"
-              isPlaying
-              duration={20}
-              colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-              onComplete={() => {
-                createAction && createAction({ query });
-                return [true, 1000];
-              }}
-            >
-              {renderTime}
-            </CountdownCircleTimer>
+          <div className={classes.timerContainer}>
+            <Timer createAction={() => createAction(query)} />
           </div>
         </h4>
       </div>

@@ -139,7 +139,6 @@ class Login extends React.Component {
     const { classes } = this.props;
     const imageUrl = "/images/lock.png";
     const title = "Login";
-    const subtitle = "Sign up";
     const { form, start_login } = this.state;
     const { email, password } = form;
 
@@ -175,6 +174,7 @@ class Login extends React.Component {
                         name="email"
                         label="Email"
                         value={email}
+                        onKeyDown={this.onKeyDown}
                         onChange={this.onChange}
                       />
                       <IconTextField

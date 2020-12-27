@@ -2,6 +2,7 @@ import React from "react";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import PuzzleModel from "../../models/Puzzle";
+import { styles } from "./styles";
 
 const Cell = ({ cell, onClick }) => {
   return (
@@ -10,16 +11,6 @@ const Cell = ({ cell, onClick }) => {
     </span>
   );
 };
-const styles = (theme) => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 class Board extends React.Component {
   constructor(props) {
@@ -36,31 +27,14 @@ class Board extends React.Component {
   }
 
   render() {
-    const { puzzle, onClick } = this.props;
+    const { puzzle, onClick, classes } = this.props;
     return (
       <Paper>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "3%",
-          }}
-        >
+        <div className={classes.puzzleContainer}>
           <div className="puzzle__container">
             <div className="puzzle__inner">
               {puzzle.values.map((row, i) => (
-                <p
-                  key={i}
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    margin: "3px",
-                    padding: 0,
-                    justifyContent: "center",
-                  }}
-                >
+                <p key={i} className={classes.row}>
                   {row.map((cell, j) => (
                     <Cell key={j} onClick={() => onClick(cell)} cell={cell} />
                   ))}

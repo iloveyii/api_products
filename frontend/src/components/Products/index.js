@@ -40,12 +40,7 @@ class Products extends React.Component {
 
     return (
       <div style={{ minHeight: 800, width: "100%", overflow: "auto" }}>
-        <DataGrid
-          rowHeight={75}
-          //  className={[classes.cell]}
-          rows={data}
-          columns={columns}
-        />
+        <DataGrid rowHeight={75} rows={data} columns={columns} />
       </div>
     );
   }

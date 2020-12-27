@@ -1,7 +1,25 @@
 import React from "react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import Products from "../Products";
+import { makeStyles } from "@material-ui/core/styles";
 
+import Products from "../Products";
+import Timer from "../Timer";
+import { styles } from "./styles";
+
+const query = `
+  {
+    logs {
+      id
+      team_id
+      name
+      url
+      position
+      stat {
+      GP, W, L, T, OTW, OTL, PTS, GF, GA, GD
+      } 
+      timestamp
+    }
+  }
+`;
 const renderTime = ({ remainingTime }) => {
   return (
     <div
@@ -19,39 +37,18 @@ const renderTime = ({ remainingTime }) => {
   );
 };
 
+const useStyles = makeStyles((theme) => styles(theme));
+
 export default function ProductsTable({ products, createAction }) {
+  const classes = useStyles();
+
   return (
     <div className="card">
-      <div
-        className={"card-header card-header-info"}
-        style={{
-          background: "linearGradient(60deg, black, #063950) !important",
-        }}
-      >
+      <div className={"card-header card-header-info"}>
         <h4 className="card-title">
           <img src="/images/ep-logo.svg" height="50" />
-          <div
-            style={{
-              float: "right",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <CountdownCircleTimer
-              key={1}
-              size="45"
-              strokeWidth="5"
-              isPlaying
-              duration={20}
-              colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-              onComplete={() => {
-                createAction && createAction({ query });
-                return [true, 1000];
-              }}
-            >
-              {renderTime}
-            </CountdownCircleTimer>
+          <div className={classes.timerContainer}>
+            <Timer createAction={() => createAction(query)} />
           </div>
         </h4>
       </div>

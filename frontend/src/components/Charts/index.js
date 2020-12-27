@@ -1,140 +1,25 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+
 import Graph from "./Graph";
 import Stats from "./Stats";
-import Table from "./Table";
+import BarChart from "./BarChart";
 import DataTable from "./DataTable";
 import ProductsTable from "./ProductsTable";
 import { Header } from "../../layouts";
 import { withStyles } from "@material-ui/styles";
 import { Container, Paper, Button } from "@material-ui/core";
-import models from "../../store";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-
-const drawerWidth = 240;
-
-const data = {
-  days: {
-    1: {
-      average: {
-        temperature: 22,
-        co2: 688,
-        humidity: 27,
-        pressure: 1001,
-      },
-    },
-    2: {
-      average: {
-        temperature: 28,
-        co2: 935,
-        humidity: 31,
-        pressure: 1040,
-      },
-    },
-    25: {
-      average: {
-        temperature: 21,
-        co2: 837,
-        humidity: 29,
-        pressure: 1010,
-      },
-    },
-  },
-};
-
-const styles = (theme) => ({
-  main: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  },
-});
+import { stats } from "./mockup";
+import { Time } from "../../common/helpers";
+import { styles } from "./styles";
 
 class Charts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       logs: [],
-      stats: {
-        usage: {
-          door: { onTime: 0 },
-          stove: { onTime: 0 },
-          television: { onTime: 0 },
-          light: { onTime: 0 },
-        },
-        average: {
-          temperature: { value: 32, unit: "°C" },
-          co2: { value: 954, unit: "mol" },
-          humidity: { value: 26, unit: "g.m-3" },
-          pressure: { value: 840, unit: "pas" },
-        },
-        days: {
-          1: {
-            average: {
-              temperature: 26,
-              co2: 1208,
-              humidity: 24,
-              pressure: 1202,
-            },
-          },
-          2: {
-            average: {
-              temperature: 1,
-              co2: 1453,
-              humidity: 39,
-              pressure: 1320,
-            },
-          },
-        },
-
-        weeks: {
-          41: {
-            average: {
-              temperature: 40,
-              co2: 960,
-              humidity: 25,
-              pressure: 589,
-            },
-          },
-          42: {
-            average: {
-              temperature: 27,
-              co2: 700,
-              humidity: 34,
-              pressure: 1083,
-            },
-          },
-          43: {
-            average: {
-              temperature: 22,
-              co2: 598,
-              humidity: 29,
-              pressure: 1019,
-            },
-          },
-          44: {
-            average: {
-              temperature: 18,
-              co2: 1019,
-              humidity: 32,
-              pressure: 1050,
-            },
-          },
-          45: {
-            average: {
-              temperature: 20,
-              co2: 892,
-              humidity: 30,
-              pressure: 1046,
-            },
-          },
-        },
-      },
+      stats,
     };
   }
 
@@ -152,15 +37,13 @@ class Charts extends React.Component {
   componentDidMount() {
     const { login, users, readAction, createAction } = this.props;
     if (login) {
-      console.log("READ Sensor data login", login);
+      console.log("READ Sensor data for login", login);
       const user = users.find((u) => u.email === login.email);
       if (user && user.id) {
-        console.log("READ Sensor data user", user);
+        console.log("READ Sensor data for user", user);
         readAction && readAction({ suffix: "/" + user.id + "/stats" });
-        // const interval = 1000 * 60 * 10; // 10 min
         const interval = 1000 * 60 * 10;
         this.intID = setInterval(() => {
-          console.log("READ Sensor data");
           readAction && readAction({ suffix: "/" + user.id + "/stats" });
         }, interval);
       }
@@ -171,7 +54,7 @@ class Charts extends React.Component {
   }
 
   componentWillUnmount() {
-    // clearInterval(this.intID);
+    clearInterval(this.intID);
   }
 
   componentWillReceiveProps(nextProps, nextConext) {
@@ -183,19 +66,11 @@ class Charts extends React.Component {
     const { average, usage } = this.state.stats;
     const { temperature, co2, humidity, pressure } = average;
     let { door, stove, television, light } = usage;
-    door = door && door.onTime ? door.onTime : 0;
-    stove =
-      stove && stove.onTime
-        ? new Date(stove.onTime * 1000).toISOString().substr(11, 8)
-        : "";
-    television =
-      television && television.onTime
-        ? new Date(television.onTime * 1000).toISOString().substr(11, 8)
-        : "";
-    light =
-      light && light.onTime
-        ? new Date(light.onTime * 1000).toISOString().substr(11, 8)
-        : "";
+    door = door && door.onTime ? door.onTime : 20;
+    stove = Time.milliToMinHours(stove.onTime);
+    television = Time.milliToMinHours(television.onTime);
+    light = Time.milliToMinHours(light.onTime);
+
     return (
       <div className={classes.main}>
         <Header />
@@ -278,13 +153,13 @@ class Charts extends React.Component {
           </div>
 
           <div className="row">
-            <Table
+            <BarChart
               id="multilineChart"
               type="success"
               title="Daily"
               data={{ days: this.state.stats.days }}
             />
-            <Table
+            <BarChart
               id="barChart"
               type="info"
               title="Weekly"
