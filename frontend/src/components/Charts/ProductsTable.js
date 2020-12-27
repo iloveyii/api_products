@@ -7,18 +7,16 @@ import { styles } from "./styles";
 
 const query = `
   {
-    logs {
-      id
-      team_id
+   data : products {
+    id
+    name
+    attributes {
       name
-      url
-      position
-      stat {
-      GP, W, L, T, OTW, OTL, PTS, GF, GA, GD
-      } 
-      timestamp
-    }
+      value
+    } 
   }
+  success
+}
 `;
 const renderTime = ({ remainingTime }) => {
   return (
@@ -48,7 +46,7 @@ export default function ProductsTable({ products, createAction }) {
         <h4 className="card-title">
           <img src="/images/ep-logo.svg" height="50" />
           <div className={classes.timerContainer}>
-            <Timer createAction={() => createAction(query)} />
+            <Timer createAction={() => createAction({ query })} />
           </div>
         </h4>
       </div>

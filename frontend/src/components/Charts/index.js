@@ -13,18 +13,34 @@ import { connect } from "react-redux";
 import { stats } from "./mockup";
 import { Time } from "../../common/helpers";
 import { styles } from "./styles";
+import models from "../../store";
 
+const query = `
+  {
+   data : products {
+    id
+    name
+    attributes {
+      name
+      value
+    } 
+  }
+  success
+}
+`;
 class Charts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       logs: [],
+      products: [],
       stats,
     };
   }
 
   setForm(props) {
-    const { stats, game_logs, logs } = props;
+    console.log("GRAPH props at charts :", props);
+    const { stats, products, logs } = props;
     if (stats && stats.days && stats.weeks && stats.average) {
       this.setState({ stats });
     }
@@ -32,10 +48,19 @@ class Charts extends React.Component {
     if (logs && Array.isArray(logs) && logs.length > 0) {
       this.setState({ logs });
     }
+    // set products
+    if (products && Array.isArray(products) && products.length > 0) {
+      this.setState({ products });
+    }
   }
 
   componentDidMount() {
     const { login, users, readAction, createAction } = this.props;
+    setTimeout(() => {
+      console.log("GraphQL :");
+      createAction({ query });
+    }, 4000);
+
     if (login) {
       console.log("READ Sensor data for login", login);
       const user = users.find((u) => u.email === login.email);
@@ -137,7 +162,7 @@ class Charts extends React.Component {
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <ProductsTable
-                products={[]}
+                products={this.state.products}
                 createAction={this.props.createAction}
               />
             </div>
@@ -188,13 +213,16 @@ Charts.defaultProps = {
 const mapStateToProps = (state) => ({
   login: state.logins.list.length > 0 ? state.logins.list[1] : undefined,
   users: state.users.list.length > 0 ? state.users.list : [],
+  products: state.products.list.length > 0 ? state.products.list : [],
 });
 
 /**
  * Import action from dir action above - but must be passed to connect method in order to trigger reducer in store
  * @type {{readAction: UserReadAction}}
  */
-const mapActionsToProps = {};
+const mapActionsToProps = {
+  createAction: models.products.actions.create,
+};
 
 export default withRouter(
   withStyles(styles)(connect(mapStateToProps, mapActionsToProps)(Charts))

@@ -27,7 +27,7 @@ export const columns = [
   {
     field: "url",
     headerName: "Logo",
-    width: 720,
+    width: 500,
     renderCell: (params) => {
       const attributes = params.getValue("attributes");
       return <Table attributes={attributes} />;
@@ -40,7 +40,7 @@ export const products = {
   data: {
     products: [
       {
-        id: 6267654,
+        id: 1,
         name: "Auto Omega",
         attributes: [
           {
@@ -58,7 +58,7 @@ export const products = {
         ],
       },
       {
-        id: 8094994,
+        id: 2,
         name: "Bike Alef",
         attributes: [
           {
@@ -76,7 +76,7 @@ export const products = {
         ],
       },
       {
-        id: 2846132,
+        id: 3,
         name: "Bike Bet",
         attributes: [
           {
@@ -94,7 +94,7 @@ export const products = {
         ],
       },
       {
-        id: 2169396,
+        id: 4,
         name: "Auto Alpha",
         attributes: [
           {
@@ -112,7 +112,7 @@ export const products = {
         ],
       },
       {
-        id: 2749899,
+        id: 5,
         name: "Auto Delta",
         attributes: [
           {
@@ -126,7 +126,7 @@ export const products = {
         ],
       },
       {
-        id: 3311138,
+        id: 6,
         name: "Auto Gamma",
         attributes: [
           {
@@ -148,7 +148,7 @@ export const products = {
         ],
       },
       {
-        id: 4364807,
+        id: 7,
         name: "Bike Gimel",
         attributes: [
           {
@@ -174,7 +174,7 @@ export const products = {
         ],
       },
       {
-        id: 5385176,
+        id: 8,
         name: "Bike Dalet",
         attributes: [
           {
@@ -187,11 +187,7 @@ export const products = {
           },
         ],
       },
-      {
-        id: 12345,
-        name: "Random product",
-        attributes: [],
-      },
+      { id: 9, name: "TEST Random product", attributes: [] },
     ],
   },
 };

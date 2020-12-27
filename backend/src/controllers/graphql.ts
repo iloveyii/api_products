@@ -8,6 +8,7 @@ import {
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
+  GraphQLBoolean,
 } from "graphql";
 import dotenv from "dotenv";
 
@@ -42,6 +43,14 @@ const getAttributeMeta = async () => {
   return data;
 };
 
+export const randomBetween = (first: number, second: number) =>
+  Math.floor(Math.random() * second) + first;
+
+// Pagination
+const pagination = (page: number, pageSize: number, data: any) => {
+  return data.slice((page - 1) * pageSize, page * pageSize);
+};
+
 // ----------------------------------
 // Get Products from API
 // ----------------------------------
@@ -53,8 +62,13 @@ const getProducts = async (args: any) => {
 
   const model = new Products(productsJson, attributeMetaJson);
   let products = model.all();
+  // Search
   if (args.id)
     products = products.filter((product: any) => product.id === args.id);
+  // Paginate
+  if (args.page && args.page_size) {
+    products = pagination(args.page, args.page_size, products);
+  }
 
   return products;
 };
@@ -94,8 +108,14 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(ProductType),
       args: {
         id: { type: GraphQLInt },
+        page: { type: GraphQLInt },
+        page_size: { type: GraphQLInt },
       },
       resolve: async (root, args, context, info) => await getProducts(args),
+    },
+    success: {
+      type: GraphQLBoolean,
+      resolve: () => true,
     },
   },
 });

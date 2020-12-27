@@ -40,7 +40,11 @@ class ShlGrid extends React.Component {
 
     return (
       <div style={{ minHeight: 750, width: "100%", overflow: "auto" }}>
-        <DataGrid rows={data} columns={columns} />
+        {data && data.length > 0 ? (
+          <DataGrid rows={data} columns={columns} />
+        ) : (
+          "Loading"
+        )}
       </div>
     );
   }

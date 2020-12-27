@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { classnames, DataGrid, numberComparer } from "@material-ui/data-grid";
-import { ObjectID } from "bson";
+import React from "react";
+import { DataGrid } from "@material-ui/data-grid";
 import { withStyles } from "@material-ui/styles";
 import { styles } from "./styles";
 import { columns, products } from "./mockup";
@@ -20,7 +19,7 @@ class Products extends React.Component {
 
   setForm = (props) => {
     const { products } = props;
-    if (products && Array.isArray(products) && products.length > 0) {
+    if (products && Array.isArray(products) && products.length > 1) {
       console.log("products");
       const data = products.map((row, i) => ({ ...row, id: i + 1 }));
       this.setState({ data });
@@ -36,11 +35,16 @@ class Products extends React.Component {
   }
   render() {
     const { data } = this.state;
+    console.log("DataGrid", data);
     const { classes } = this.props;
 
     return (
       <div style={{ minHeight: 800, width: "100%", overflow: "auto" }}>
-        <DataGrid rowHeight={75} rows={data} columns={columns} />
+        {data && data.length > 1 ? (
+          <DataGrid rowHeight={75} rows={data} columns={columns} />
+        ) : (
+          "Loading"
+        )}
       </div>
     );
   }

@@ -70,7 +70,7 @@ class Model {
               ? response.success
               : true,
           form: response.data,
-          list: response.data,
+          list: response.data.data ? response.data.data : response.data,
           errors: [],
         },
       }),
@@ -333,7 +333,7 @@ class Model {
           console.log("MODEL", action);
           if (status === true) {
             // Put data in list
-            newState = { ...state, form: this.form }; // fill both list and form from new data/clear
+            newState = { ...state, form: this.form, list }; // fill both list and form from new data/clear
             if (newState.actions[id]) {
               // Hack for logs
               if (this.name.includes("log")) {

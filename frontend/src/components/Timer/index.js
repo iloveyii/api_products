@@ -25,10 +25,10 @@ export default function Timer({ createAction }) {
       size="45"
       strokeWidth="5"
       isPlaying
-      duration={20}
+      duration={7}
       colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
       onComplete={() => {
-        createAction && createAction({ query });
+        createAction && createAction();
         return [true, 1000];
       }}
     >

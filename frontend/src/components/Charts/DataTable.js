@@ -7,16 +7,9 @@ import { styles } from "./styles";
 
 const query = `
   {
-    logs {
+    products {
       id
-      team_id
       name
-      url
-      position
-      stat {
-      GP, W, L, T, OTW, OTL, PTS, GF, GA, GD
-      } 
-      timestamp
     }
   }
 `;
@@ -37,7 +30,7 @@ export default function SportsTable({ logs, createAction }) {
         <h4 className="card-title">
           <img src="/images/ep-logo.svg" height="50" />
           <div className={classes.timerContainer}>
-            <Timer createAction={() => createAction(query)} />
+            <Timer createAction={() => null} />
           </div>
         </h4>
       </div>
