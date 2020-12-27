@@ -1,7 +1,7 @@
 import React from "react";
 import { Paper, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import PuzzleModel from "../../models/Puzzle";
+import PuzzleModel from "./Puzzle";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";

@@ -128,11 +128,17 @@
     />
     <style>
       .puzzle__container {
-        width: 70%;
         text-align: center;
         margin: 0 auto;
+        display: "flex";
+        flex-direction: "column";
+        justify-content: "center";
+        align-items: "center";
+        padding: "3%";
+        border: 1px solid blueviolet;
       }
       .puzzle__inner {
+        width: 70%;
         margin: 0 auto;
         height: auto;
         padding: 20px;
@@ -167,7 +173,8 @@
       }
 
       @media (max-width: 750px) {
-        .puzzle__container {
+        .puzzle__container,
+        .puzzle__inner {
           width: 100%;
         }
       }

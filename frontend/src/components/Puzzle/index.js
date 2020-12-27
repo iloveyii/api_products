@@ -3,22 +3,13 @@ import PageHeader from "../PageHeader";
 import { Container } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import { Header } from "../../layouts";
-import PuzzleModel from "../../models/Puzzle";
+import Puzzle from "./Puzzle";
 import Form from "./Form";
 import Board from "./Board";
 import Result from "./Result";
+import { styles } from "./styles";
 
-const drawerWidth = 240;
-const styles = (theme) => ({
-  main: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-});
-
-class Puzzle extends React.Component {
+class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +18,7 @@ class Puzzle extends React.Component {
         rows: 3,
         columns: 5,
       },
-      puzzle: new PuzzleModel(3, 5),
+      puzzle: new Puzzle(3, 5),
       solved: false,
     };
   }
@@ -45,7 +36,7 @@ class Puzzle extends React.Component {
   onRandomize = () => {
     const { rows, columns } = this.state.form;
     this.setState({
-      puzzle: new PuzzleModel(Number(rows), Number(columns)),
+      puzzle: new Puzzle(Number(rows), Number(columns)),
       solved: false,
     });
   };
@@ -84,4 +75,4 @@ class Puzzle extends React.Component {
   }
 }
 
-export default withStyles(styles)(Puzzle);
+export default withStyles(styles)(Index);

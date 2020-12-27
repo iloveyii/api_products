@@ -1,12 +1,12 @@
 import React from "react";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import PuzzleModel from "../../models/Puzzle";
+import Puzzle from "./Puzzle";
 import { styles } from "./styles";
 
-const Cell = ({ cell, onClick }) => {
+const Cell = ({ cell, onClick, className }) => {
   return (
-    <span onClick={onClick} className="puzzle__cell">
+    <span onClick={onClick} className={className}>
       {cell.value + " "}
     </span>
   );
@@ -21,7 +21,7 @@ class Board extends React.Component {
         rows: 3,
         columns: 5,
       },
-      puzzle: new PuzzleModel(3, 5),
+      puzzle: new Puzzle(3, 5),
       solved: false,
     };
   }
@@ -29,21 +29,21 @@ class Board extends React.Component {
   render() {
     const { puzzle, onClick, classes } = this.props;
     return (
-      <Paper>
+      <Paper component="form">
         <div className={classes.puzzleContainer}>
-          <div className="puzzle__container">
-            <div className="puzzle__inner">
-              {puzzle.values.map((row, i) => (
-                <p key={i} className={classes.row}>
-                  {row.map((cell, j) => (
-                    <Cell key={j} onClick={() => onClick(cell)} cell={cell} />
-                  ))}
-                </p>
-              ))}
-            </div>
-          </div>
-          <div style={{ height: "40px" }}>
-            {this.state.solved ? <p>Congratulations, You solved it !</p> : ""}
+          <div className={classes.puzzleInner}>
+            {puzzle.values.map((row, i) => (
+              <p key={i} className={classes.row}>
+                {row.map((cell, j) => (
+                  <Cell
+                    className={classes.puzzleCell}
+                    key={j}
+                    onClick={() => onClick(cell)}
+                    cell={cell}
+                  />
+                ))}
+              </p>
+            ))}
           </div>
         </div>
       </Paper>
