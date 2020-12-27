@@ -23,6 +23,7 @@ import { notFound } from "./middlewares/not_found";
 // ----------------------------------
 import login from "./routes/login";
 import user from "./routes/user";
+import product from "./routes/product";
 import graphql from "./routes/graphql";
 import default_route from "./routes/default_route";
 
@@ -68,8 +69,10 @@ app.set("view engine", "ejs");
 // ----------------------------------
 app.use("/api/v1/logins", login);
 app.use("/api/v1/users", user);
+app.use("/api/v1/products", product);
+app.use("/api/v1/products/*", product);
 app.use("/graphql*", graphql);
-app.use("*", default_route);
+// app.use("*", default_route);
 
 // ----------------------------------
 // Not found - 404
