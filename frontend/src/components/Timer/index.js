@@ -25,7 +25,7 @@ export default function Timer({ createAction }) {
       size="45"
       strokeWidth="5"
       isPlaying
-      duration={7}
+      duration={30}
       colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
       onComplete={() => {
         createAction && createAction();

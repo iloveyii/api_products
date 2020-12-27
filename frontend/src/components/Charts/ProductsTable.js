@@ -44,7 +44,7 @@ export default function ProductsTable({ products, createAction }) {
     <div className="card">
       <div className={"card-header card-header-info"}>
         <h4 className="card-title">
-          <img src="/images/ep-logo.svg" height="50" />
+          <span>Products</span>
           <div className={classes.timerContainer}>
             <Timer createAction={() => createAction({ query })} />
           </div>
