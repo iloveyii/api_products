@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Database } from "../models/base/Database";
 import User from "../models/User";
-import Permission from "../models/Permission";
 import Condition from "../models/base/Condition";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -9,14 +8,6 @@ import jwt from "jsonwebtoken";
 require("dotenv").config();
 
 const token_secret = process.env.TOKEN_SECRET || "this-is-a-secret";
-
-const getPermissions = async (user: any) => {
-  const condition = new Condition({ where: { email: user.email } });
-  const model = new Permission(undefined);
-  await model.read(condition);
-  console.log("Permissions list ", model.response.data);
-  return model.response.success ? model.response.data : [];
-};
 
 export const getUser = async (req: Request, res: Response) => {
   return res
@@ -63,10 +54,10 @@ export const loginUser = async (
         { id: user.id, email: user.email },
         token_secret
       );
-      const permissions = await getPermissions(user);
+
       return res.status(200).send({
         success: true,
-        data: [{ id: user.id, email: user.email, token, permissions }],
+        data: [{ id: user.id, email: user.email, token }],
       });
     } else {
       return res.status(200).send({

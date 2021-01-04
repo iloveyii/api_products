@@ -89,7 +89,7 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ form: { email: "admin@admin.com", password: "admin" } }); // @todo - remove
+    this.setState({ form: { email: "root@admin.com", password: "admin" } }); // @todo - remove
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
