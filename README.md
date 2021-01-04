@@ -8,9 +8,9 @@
 - Frontend in react - A small N-Puzzle game
 - Backend in node typescript - An GraphQL endpoint which fetches data from two remote API endpoints and reformats data in a specific format
 
-| GraphQL                                                                                                                                           | Backend API                                                                                                                                        | Frontend                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![grpahql](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/graphql.png?token=ABIOGGF3AHSD2AMZUXKLDIC76NDFS) | ![api](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/products_api.png?token=ABIOGGCHUSVCGTJ2PKAULDC76NAFI) | ![fe](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/frontend.png?token=ABIOGGBMAEKFKLZSH27CO4S76NC22) |
+| GraphQL                                                   | Backend API                                                | Frontend                                              |
+| --------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
+| ![grpahql](http://172.104.140.88:7700/images/graphql.png) | ![api](http://172.104.140.88:7700/images/products_api.png) | ![fe](http://172.104.140.88:7700/images/frontend.png) |
 
 - [DEMO PROJECT - Link 1](http://172.104.140.88:7700/)
 
@@ -39,7 +39,7 @@
 
 - Browse to http://172.104.140.88:7700/api/v1/products/1/3
 - The parameter 1 in the query path is for page number, while 3 is for page size
-- You may use the query string url as well like : http://localhost:7700/api/v1/products?page=1&page_size=3
+- You may use the query string url as well like : http://172.104.140.88:7700/api/v1/products?page=1&page_size=3
 
 ### Frontend
 
