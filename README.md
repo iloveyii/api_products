@@ -8,9 +8,9 @@
 - Frontend in react - A small N-Puzzle game
 - Backend in node typescript - An GraphQL endpoint which fetches data from two remote API endpoints and reformats data in a specific format
 
-| GraphQL      | Backend API | Frontend |
-| ------------ | ----------- | -------- |
-| ![grpahql]() | ![api]()    | ![fe]()  |
+| GraphQL                                                                                                                                           | Backend API                                                                                                                                        | Frontend                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![grpahql](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/graphql.png?token=ABIOGGFTMO7O7BHTCUM4DB276NADQ) | ![api](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/products_api.png?token=ABIOGGCHUSVCGTJ2PKAULDC76NAFI) | ![fe](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/frontend.png?token=ABIOGGCM52TGHHAC22PD5JC76NAGY) |
 
 - [DEMO PROJECT - Link 1](http://172.104.140.88:7700/)
 
