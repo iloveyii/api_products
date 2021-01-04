@@ -12,15 +12,14 @@
 | ------------------------------------------------------------------------------------------ |
 | ![hkr](https://github.com/iloveyii/hockey-data/blob/master/frontend/public/images/shl.png) |
 
-- [DEMO PROJECT - Link 1](http://hockey-data.ddns.net:7700)
-- [DEMO PROJECT - Link 2](http://52.55.155.45:7700)
+- [DEMO PROJECT - Link 1](http://172.104.140.88:7700/)
 
 ## DEMO
 
 ### GraphQL
 
 - browse to http://172.104.140.88:7700/graphql
-- Paste the following to fetch data from the online configured server
+- Paste the following (and then click execute button) to fetch data from the online configured server
 
 ```
 {
@@ -52,8 +51,8 @@
 - We will use Ubuntu as operating system for all installations below, but it should work on any operating system.
 - Install mongodb `sudo apt update & sudo apt install mongodb -y`
 - Clone the repo `git clone https://github.com/iloveyii/api_products.git`
-- Inside both apps (i.e frontend and backend) copy the corresponiding .env-example to .env (change mongo credentials is you have different settings for it on your system)
+- Inside both apps (i.e frontend and backend) copy the corresponiding .env-example to .env (change mongo credentials if you have different settings for it on your system)
 - Install packages in both backend and frontend by cd to backend or frontend and then `npm i` and then run both applications as `npm start`
 - The frontend application will open browser, simply click login and you will see the Dashboard.
-- Click Puzzle menu in the side bar to see the frontend application in action
+- Click Puzzle menu in the side bar to see the frontend application in action. You can change rows and cols and click reset button
 - Click Dashboard menu in the side bar to see the data from API endpoint
