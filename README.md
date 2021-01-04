@@ -10,7 +10,7 @@
 
 | GraphQL                                                                                                                                           | Backend API                                                                                                                                        | Frontend                                                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![grpahql](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/graphql.png?token=ABIOGGFTMO7O7BHTCUM4DB276NADQ) | ![api](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/products_api.png?token=ABIOGGCHUSVCGTJ2PKAULDC76NAFI) | ![fe](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/frontend.png?token=ABIOGGCM52TGHHAC22PD5JC76NAGY) |
+| ![grpahql](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/graphql.png?token=ABIOGGF3AHSD2AMZUXKLDIC76NDFS) | ![api](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/products_api.png?token=ABIOGGCHUSVCGTJ2PKAULDC76NAFI) | ![fe](https://raw.githubusercontent.com/iloveyii/api_products/master/frontend/public/images/frontend.png?token=ABIOGGBMAEKFKLZSH27CO4S76NC22) |
 
 - [DEMO PROJECT - Link 1](http://172.104.140.88:7700/)
 
@@ -37,7 +37,7 @@
 
 ### Backend
 
-- Browse to http://localhost:7700/api/v1/products/1/3
+- Browse to http://172.104.140.88:7700/api/v1/products/1/3
 - The parameter 1 in the query path is for page number, while 3 is for page size
 - You may use the query string url as well like : http://localhost:7700/api/v1/products?page=1&page_size=3
 
