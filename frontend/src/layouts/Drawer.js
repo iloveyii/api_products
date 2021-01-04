@@ -16,6 +16,7 @@ import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
 import Hidden from "@material-ui/core/Hidden";
 import { Link } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ExtensionIcon from "@material-ui/icons/Extension";
 
 const drawerWidth = 240;
 
@@ -119,7 +120,7 @@ export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
         <Link className={classes.link} to="/puzzle">
           <ListItem button>
             <ListItemIcon>
-              <SystemUpdateAltIcon />
+              <ExtensionIcon />
             </ListItemIcon>
             <ListItemText className={classes.listItemText} primary="Puzzle" />
           </ListItem>
