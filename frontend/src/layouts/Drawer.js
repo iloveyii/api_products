@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
   },
   brandImg: {
     height: 90,
-    flex: 1,
   },
   brandTxt: {
     flex: 1,
